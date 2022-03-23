@@ -14,12 +14,21 @@ export const resizeImage = async (
     const fit = req.query.fit as keyof FitEnum
     const quality = req.query.quality as number | undefined
 
-    const input = (
-      await axios({
-        url: url,
-        responseType: 'arraybuffer',
+    let input
+    try {
+      input = (
+        await axios({
+          url: url,
+          responseType: 'arraybuffer',
+        })
+      ).data as Buffer
+
+      await sharp(input, { failOnError: true }).stats()
+    } catch (error) {
+      return res.status(400).json({
+        error: 'Not a valid image',
       })
-    ).data as Buffer
+    }
 
     const result = await sharp(input)
       .resize({ width: w, height: h, fit })
@@ -29,8 +38,8 @@ export const resizeImage = async (
       .toBuffer()
 
     res.contentType('image/jpeg')
-    res.send(result)
+    return res.send(result)
   } catch (error) {
-    next(error)
+    return next(error)
   }
 }

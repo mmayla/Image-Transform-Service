@@ -15,4 +15,11 @@ describe('GET /images', () => {
     expect(res.status).toEqual(200)
     expect(res.headers['content-type']).toMatch(/image/)
   })
+
+  it('should fail with 400', async () => {
+    const resizeURL = `${imagesRoute}?source=https://no-an-image.com/unkown`
+    const res = await request(app).get(resizeURL)
+    expect(res.status).toEqual(400)
+    expect(res.headers['content-type']).toMatch(/json/)
+  })
 })
