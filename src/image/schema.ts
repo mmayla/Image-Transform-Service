@@ -4,9 +4,15 @@ export const imageResizeOptionsSchema: JSONSchemaType<{
   source: string
   width?: number
   height?: number
+  fit?: string
+  quality?: number
 }> = {
   type: 'object',
   properties: {
+    source: {
+      type: 'string',
+      minLength: 1,
+    },
     width: {
       type: 'integer',
       minimum: 0,
@@ -17,9 +23,16 @@ export const imageResizeOptionsSchema: JSONSchemaType<{
       minimum: 0,
       nullable: true,
     },
-    source: {
+    fit: {
       type: 'string',
-      minLength: 1,
+      nullable: true,
+      enum: ['cover', 'contain', 'fill', 'inside', 'outside'],
+    },
+    quality: {
+      type: 'number',
+      nullable: true,
+      minimum: 10,
+      maximum: 100,
     },
   },
   required: ['source'],
