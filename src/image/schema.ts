@@ -31,7 +31,7 @@ export const imageResizeOptionsSchema: JSONSchemaType<{
     quality: {
       type: 'number',
       nullable: true,
-      minimum: 10,
+      minimum: 1,
       maximum: 100,
     },
   },
