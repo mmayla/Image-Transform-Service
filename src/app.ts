@@ -16,8 +16,7 @@ export const apiPrefix = '/api/v1'
  * API routes
  */
 app
-  .route(`${apiPrefix}/images/:sourceURL`)
-  .get(imageController.sourceURLParamsValidator)
+  .route(`${apiPrefix}/images`)
   .get(imageController.imageOptionsQueryValidator)
   .get(imageController.resizeImage)
 

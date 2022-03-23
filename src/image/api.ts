@@ -6,8 +6,9 @@ export const resizeImage = async (
   next: NextFunction,
 ) => {
   try {
-    const { width, height } = req.query
+    const { source, width, height } = req.query
     res.json({
+      source,
       width,
       height,
     })

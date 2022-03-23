@@ -1,6 +1,7 @@
 import { JSONSchemaType } from 'ajv'
 
 export const imageResizeOptionsSchema: JSONSchemaType<{
+  source: string
   width?: number
   height?: number
 }> = {
@@ -16,7 +17,12 @@ export const imageResizeOptionsSchema: JSONSchemaType<{
       minimum: 0,
       nullable: true,
     },
+    source: {
+      type: 'string',
+      minLength: 1,
+    },
   },
+  required: ['source'],
   additionalProperties: false,
 }
 
