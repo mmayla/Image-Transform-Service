@@ -39,9 +39,9 @@ docker-compose up
 
 Assuming the server is started with `PORT=3000`. The following REST APIs are exposed:
 
-- **GET** `http://localhost:3000/api/v1/images/:sourceURL?width=1024&height=1024`
+- **GET** `http://localhost:3000/api/v1/images?source=image-url&height=1024&width=1024&fit=cover&quality=90`
 
-  Transform the image of `sourceURL` followed by a query of options like `width` and `height`
+  Transform the image of `source` followed with any of the options `width`, `height`, `fit` and `quality`
 
 ## Notes
 
