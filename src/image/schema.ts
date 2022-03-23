@@ -11,6 +11,7 @@ export const imageResizeOptionsSchema: JSONSchemaType<{
   properties: {
     source: {
       type: 'string',
+      format: 'url',
       minLength: 1,
     },
     width: {
